@@ -108,14 +108,16 @@ document.onkeydown = function (e) {
     
 document.onkeypress = function (e) {
     const key = String.fromCharCode(e.which);
- 
+
     // Only process if user is editing text
     // and they aren't holding down the CTRL
     // or META keys.
- 
+
     if (e.keyCode !== 8 && !e.ctrlKey && !e.metaKey) {
-      e.preventDefault(); // no further browser processing
-      paragraph.insert(key);
+        e.preventDefault(); // no further browser processing
+        context.fillStyle = fillStyleSelect.value;
+        context.strokeStyle = strokeStyleSelect.value;
+        paragraph.insert(key);
     }
  }
  
