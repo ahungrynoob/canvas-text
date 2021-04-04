@@ -59,11 +59,66 @@ sizeSelect.onchange = setFont;
 
 fillStyleSelect.onchange = function () {
     cursor.fillStyle = fillStyleSelect.value;
+    canvas.fillStyle = fillStyleSelect.value;
  }
  
- strokeStyleSelect.onchange = function () {
-    cursor.strokeStyle = strokeStyleSelect.value;
+strokeStyleSelect.onchange = function () {
+    canvas.strokeStyle = strokeStyleSelect.value;
+}
+
+// event handler
+
+canvas.onmousedown = function (e) {
+    const loc = windowToCanvas(canvas, e.clientX, e.clientY);
+    let fontHeight;
+ 
+    if(paragraph) paragraph.clearCursor();
+    saveDrawingSurface();
+    
+    if (paragraph && paragraph.isPointInside(loc)) {
+       paragraph.moveCursorCloseTo(loc.x, loc.y);
+    } else {
+       fontHeight = context.measureText('W').width,
+       fontHeight += fontHeight/6;
+ 
+       paragraph = new Paragraph(
+            context, 
+            loc.x, 
+            loc.y - fontHeight,
+            drawingSurfaceImageData,
+            cursor
+        );
+ 
+       paragraph.addLine(new TextLine(loc.x, loc.y));
+    }
+};
+
+// Key event handlers............................................
+
+document.onkeydown = function (e) {
+    if (e.keyCode === 8 || e.keyCode === 13) e.preventDefault();
+    
+    if (e.keyCode === 8) {  // backspace
+       paragraph.backspace();
+    }
+    else if (e.keyCode === 13) { // enter
+       paragraph.newLine();
+    }
+}
+    
+document.onkeypress = function (e) {
+    const key = String.fromCharCode(e.which);
+ 
+    // Only process if user is editing text
+    // and they aren't holding down the CTRL
+    // or META keys.
+ 
+    if (e.keyCode !== 8 && !e.ctrlKey && !e.metaKey) {
+      e.preventDefault(); // no further browser processing
+      paragraph.insert(key);
+    }
  }
+ 
 
 // initialization
 cursor.fillStyle = fillStyleSelect.value;
