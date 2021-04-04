@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>Canvas Text Editor</title>
+    <style>
+        body {
+            background: #eee;
+        }
+        #controls {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+        #canvas {
+            background: #ffffff;
+            cursor: text;
+            margin-left: 10px;
+            margin-top: 10px;
+            box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+        }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="850" height="500">
+        Canvas not supported
+    </canvas>
+    <div id="controls">
+        Font: <select id='fontSelect'>
+            <option value='Arial'>Arial</option>
+            <option value='Comic Sans' selected>Comic Sans</option>
+            <option value='Lucida Sans'>Lucida Sans</option>
+            <option value='Helvetica'>Helvetica</option>
+            <option value='Palatino'>Palatino</option>
+         </select>
+
+        Size: <select id='sizeSelect'>
+                    <option value='32'>32 px</option>
+                    <option value='48' selected>48 px</option>
+                    <option value='64'>64 px</option>
+                    <option value='128'>128 px</option>
+                </select>
+
+        Text stroke color: <select id='strokeStyleSelect'>
+                <option value='red'>red</option>
+                <option value='green'>green</option>
+                <option value='blue'>blue</option>
+                <option value='orange'>orange</option>
+                <option value='cornflowerblue'>cornflowerblue</option>
+                <option value='goldenrod'>goldenrod</option>
+                <option value='navy' selected>navy</option>
+                <option value='purple'>purple</option>
+            </select>
+
+        Text fill color: <select id='fillStyleSelect'>
+                    <option value='rgba(255,0,0,0.5)'>semi-transparent red</option>
+                    <option value='green'>green</option>
+                    <option value='rgba(0,0,255,0.5)'>semi-transparent blue</option>
+                    <option value='orange'>orange</option>
+                    <option value='rgba(100,140,230,0.5)'>semi-transparent cornflowerblue</option>
+                    <option value='rgba(218,165,32,0.5)' selected>semi-transparent goldenrod</option>
+                    <option value='navy'>navy</option>
+                    <option value='purple'>purple</option>
+                </select>
+    </div>
+    <script src="text-editor.js"></script>
+    <script src="example.js"></script>
+  </body>
+</html>
