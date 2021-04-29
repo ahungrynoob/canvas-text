@@ -107,7 +107,6 @@ class Paragraph {
         const context = this.context;
         context.beginPath();
         context.rect(this.left,this.top, this.getWidth(), this.getHeight());
-        console.log('isPointInside');
         return context.isPointInPath(loc.x, loc.y);
     }
 
