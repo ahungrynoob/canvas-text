@@ -107,6 +107,7 @@ class Paragraph {
         const context = this.context;
         context.beginPath();
         context.rect(this.left,this.top, this.getWidth(), this.getHeight());
+        console.log('isPointInside');
         return context.isPointInPath(loc.x, loc.y);
     }
 
@@ -175,7 +176,6 @@ class Paragraph {
 
     moveCursorCloseTo(x, y){
         const line = this.getLine(y);
-        console.log(line);
         if(line){
             line.caret = this.getColumn(line, x);
             this.activeLine = line;
