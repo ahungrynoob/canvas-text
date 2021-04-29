@@ -71,25 +71,25 @@ strokeStyleSelect.onchange = function () {
 canvas.onmousedown = function (e) {
     const loc = windowToCanvas(canvas, e.clientX, e.clientY);
     let fontHeight;
-
+ 
+    if(paragraph && !paragraph.isPointInside(loc)) paragraph.clearCursor();
     saveDrawingSurface();
     
     if (paragraph && paragraph.isPointInside(loc)) {
        paragraph.moveCursorCloseTo(loc.x, loc.y);
     } else {
-        if(paragraph) paragraph.clearCursor();
-        fontHeight = context.measureText('W').width,
-        fontHeight += fontHeight/6;
-    
-        paragraph = new Paragraph(
-                context, 
-                loc.x, 
-                loc.y - fontHeight,
-                drawingSurfaceImageData,
-                cursor
-            );
-    
-        paragraph.addLine(new TextLine(loc.x, loc.y));
+       fontHeight = context.measureText('W').width,
+       fontHeight += fontHeight/6;
+ 
+       paragraph = new Paragraph(
+            context, 
+            loc.x, 
+            loc.y - fontHeight,
+            drawingSurfaceImageData,
+            cursor
+        );
+ 
+       paragraph.addLine(new TextLine(loc.x, loc.y));
     }
 };
 
