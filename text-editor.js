@@ -257,10 +257,6 @@ class Paragraph {
         this.draw();
         this.cursor.draw(this.context, this.activeLine.left, this.activeLine.bottom);
     }
-
-    activeLineIsOutOfText(){
-        return this.activeLine.text.length === 0;
-    }
   
     activeLineIsTopLine(){
         return this.lines[0] === this.activeLine;
