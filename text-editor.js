@@ -175,6 +175,7 @@ class Paragraph {
 
     moveCursorCloseTo(x, y){
         const line = this.getLine(y);
+        console.log(line);
         if(line){
             line.caret = this.getColumn(line, x);
             this.activeLine = line;
